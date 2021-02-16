@@ -1,0 +1,32 @@
+body{
+  background-color: #deffff;
+}
+
+
+h1{
+  color: #bac8ff;
+}
+
+nav.navbar{
+  background-color: #c5d7fa;
+}
+
+div.col{
+  background-color: #c5d7fa;
+
+}
+
+a.nav-link{
+  color: #53F1FF;
+
+}
+
+div.dropdown-menu{
+  background-color: #c5d7fa;
+}
+
+button{
+  text-decoration: none;
+  border:1px solid black;
+  border-radius: 25px;
+}
