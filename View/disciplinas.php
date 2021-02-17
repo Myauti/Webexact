@@ -2,16 +2,20 @@
   session_start();
   include "../Controller/conexao.php";
   $id = $_SESSION['id_user'];
-  $sql = "SELECT * FROM professor_disciplina where professor_vinculado = $id";
+  $sql = "SELECT d.nome as nome_disciplina, u.nome, p.usuario_professor, pd.* FROM professor_disciplina AS pd 
+  INNER JOIN professores AS p ON pd.professor_vinculado = p.id_professor
+  INNER JOIN usuarios AS u ON u.id_usuario = p.usuario_professor
+  INNER JOIN disciplinas as d ON pd.disciplina_vinculada = d.id_disciplinas
+  WHERE p.usuario_professor = $id";
   $rs = $conec->query($sql);
 
   $dados = $rs->fetch_object();
 
-  $id_disciplina_vinculada = $dados->disciplina_vinculada;
+  //$id_disciplina_vinculada = $dados->disciplina_vinculada;
 
-  $consulta = "SELECT * from disciplinas where id_disciplinas = $id_disciplina_vinculada";
-  $result = $conec->query($consulta);
-  $obj = $result->fetch_object();
+  //$consulta = "SELECT * from disciplinas where id_disciplinas = $id_disciplina_vinculada";
+  //$result = $conec->query($consulta);
+  //$obj = $result->fetch_object();
 ?>
 
 <!doctype html>
@@ -58,14 +62,14 @@
 
       <!--CONTEÚDO DA PÁGINA-->
       <div class="container">
-        <h1>Selecione a disciplina desejada: <?php echo $id ?></h1>
+        <h1>Selecione a disciplina desejada:</h1>
 
         <div class="h-75 container d-flex justify-content-around  mt-5">
 
             <div class="d-flex p-2" >
-                <a href="professor.php" class="btn btn-lg active" role="button" aria-pressed="true" style="border: 2px solid #c5d7fa">
-                    <h2><?php echo $obj->nome ?></h2>
-                </a>
+            <?php while($obj = $rs->fetch_object()){ ?>
+              <button onclick="window.location.href = 'professor.php'"type="button" class="mb-4 rounded btn btn-outline-primary btn-lg ml-md-3" ><?php echo $obj->nome_disciplina . " " . "-" . " " . $obj->disciplina_vinculada ?></button>
+            <?php } ?>
             </div>
         </div>
       </div>
