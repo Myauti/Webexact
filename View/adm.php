@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./Crud/css/style.css">
     <title>Webexact</title>
-    <link rel="stylesheet" type="text/css" href="estilo.css">
+    <link rel="stylesheet" type="text/css" href="./estilo.css">
 </head>
 
 <body>
@@ -16,24 +17,72 @@
     <!--MENU DE NAVEGAÇÃO DA PÁGINA-->
 
     <!--CONTEÚDO DA PÁGINA-->
-    <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
-            <h5 class="text-white h4">Collapsed content</h5>
-            <span class="text-muted">Toggleable via the navbar brand.</span>
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+            <h1><a href="../../index.html" class="logo">Tabelas</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li>
+                    <a href="./Crud/crudAluno.php"><span class="fa fa-group  mr-3"></span> Alunos</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudUsuarios.php"><span class="fa fa-group mr-3"></span> Usuários</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudProf.php"><span class="fa fa-group mr-3"></span> Professores</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudDisc.php"><span class="fa fa-folder-open-o mr-3"></span> Disciplinas</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudSex.php"><span class="fa fa-book mr-3"></span> Sexos</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudAtiv.php"><span class="fa fa-book mr-3"></span> Atividades</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudCat.php"><span class="fa fa-book mr-3"></span> Categoria de atividades</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudCurs.php"><span class="fa fa-book mr-3"></span> Cursos</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudEsc.php"><span class="fa fa-book mr-3"></span> Escolaridades</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudVinc.php"><span class="fa fa-book mr-3"></span> Vinculo professor-disciplina</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudMatr.php"><span class="fa fa-book mr-3"></span> Situaçoes da matrícula</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudTC.php"><span class="fa fa-book mr-3"></span> Turno dos cursos</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudUF.php"><span class="fa fa-book mr-3"></span> Unidades Federativas</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudUnid.php"><span class="fa fa-book mr-3"></span> Unidades de ensino</a>
+                </li>
+
+            </ul>
+
+        </nav>
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <h3 class="mb-4">Selecione uma tabela para editar</h3>
         </div>
+
     </div>
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </nav>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-    </script>
+
+    <script src="./Crud/js/jquery.min.js"></script>
+    <script src="./Crud/js/popper.js"></script>
+    <script src="./Crud/js/bootstrap.min.js"></script>
+    <script src="./Crud/js/main.js"></script>
 </body>
 
 </html>
