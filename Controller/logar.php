@@ -34,7 +34,8 @@
             }
             elseif($_SESSION['usuarioId'] == "1"){
                 header("Location: ../View/adm.php");
-            }   
+            }
+            
         }
         else{
             $_SESSION['loginErro'] = "Usuario ou senha invalida";

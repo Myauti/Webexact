@@ -1,0 +1,9 @@
+#ignorar todos os arquivos e sub-pastas localizados na pasta upload/
+upload/
+
+#ignorar todos os arquivos de log
+*.log
+
+#ignorar o arquivo de configuração local
+
+.git/
