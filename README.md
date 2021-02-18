@@ -1,1 +1,1 @@
-Webexact
+Webexact - Sistema Web para Desenvolvimento de Matérias Exatas
