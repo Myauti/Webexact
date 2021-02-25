@@ -121,7 +121,7 @@
     <script>
         function excluir(id_atividades){
             if (confirm("Deseja excluir essa atividade?")) {
-                window.location.href = "../../Controller/CrudDelete/delAtiv.php?id_atividade=" + id_atividade;
+                window.location.href = "../../Controller/CrudDelete/delAtiv.php?id_atividades=" + id_atividades;
             }
         }
 
