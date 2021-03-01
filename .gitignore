@@ -1,6 +1,7 @@
 #ignorar todos os arquivos e sub-pastas localizados na pasta upload/
 upload/
 
+archive/
 #ignorar todos os arquivos de log
 *.log
 
