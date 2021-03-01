@@ -49,7 +49,7 @@
       <div class="container">
         <h1>Cadastro de professor</h1>
       
-        <form action="../Controller/cadastrarProfessor.php" method="POST">
+        <form action="../Controller/cadastrarProfessor.php" method="POST" enctype="multipart/form-data">
           <div class="form-row">
             <div class="form-group col-md-6">
               <label>Nome</label>
@@ -164,12 +164,15 @@
                   ?>
             </select>
           </div>
-
-            
-
           </div>
 
-          <button type="submit" class="btn btn-primary" value="Entrar">Entrar</button>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="comprovante">Comprovante</label>
+                <input type="file" name="comprovante" class="form-control-file mb-2">
+                <button type="submit" name="submit" class="btn btn-primary">Enviar solicitação de cadastro</button>
+              </div>
+          </div>
         </form>
       </div>
 
