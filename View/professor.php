@@ -75,10 +75,13 @@ $result = $conec->query($sql);
           <p class="text-center">
           <div class="container text-center texto-grande">
             <p>
-              <h2>
-                <?php echo $obj->nome . " " . "----" ?> <?php echo $obj->descricao ?>
-                <a href="../upload/<?php echo $obj->arquivo?>" target="_blank"> <?php echo $obj->nome ?></a>
-              </h2>
+            <h2>
+              <div class="card card-signin my-5 colorido">
+                <p class="d-block"><?php echo $obj->nome ?></p>
+                <p class="d-block"><?php echo $obj->descricao?></p>
+                <a href="../upload/<?php echo $obj->arquivo ?>" target="_blank"> <?php echo $obj->nome ?></a>
+              </div>
+            </h2>
             </p>
           </div>
           </p>
