@@ -14,6 +14,7 @@
 
     $result = $conec->query($sql);
 
+    $id = mysqli_insert_id($conec);
 
     if(isset($_POST['submit'])){
         $file = $_FILES['arquivo'];
@@ -35,6 +36,8 @@
                     $fileNameNew = uniqid('', true) . "." . $fileActualExtension;
                     $fileDestination = '../upload/' . $fileNameNew;
                     move_uploaded_file($fileTmpName, $fileDestination);
+                    $sql = "update atividades set arquivo='$fileNameNew' where id_atividades = $id";
+                    $conec->query($sql);
                     header("Location: ../View/professor.php?uploadsuccess");
                 } else {
                     echo "Seu arquivo é muito grande!";
