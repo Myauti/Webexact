@@ -29,3 +29,11 @@ button{
   border:1px solid black;
   border-radius: 25px;
 }
+
+.conteudo-oculto {
+  display: none;
+}
+
+.texto-grande {
+  font-size: 12px;
+}
