@@ -77,8 +77,10 @@ $result = $conec->query($sql);
             <p>
             <h2>
               <div class="card card-signin my-5 colorido">
-                <p class="d-block"><?php echo $obj->nome ?></p>
-                <p class="d-block"><?php echo $obj->descricao?></p>
+                <p class="d-block"><?php echo "Nome" . " " . " : " . $obj->nome ?></p>
+                <p class="d-block"><?php echo "Descrição" . " " . " : " . $obj->descricao?></p>
+                <p class="d-block"><?php echo "Início da atividade" . " " . " : " . $obj->data_inicio?></p>
+                <p class="d-block"><?php echo "Fim da atividade" . " " . " : " . $obj->data_fim?></p>
                 <a href="../upload/<?php echo $obj->arquivo ?>" target="_blank"> <?php echo $obj->nome ?></a>
               </div>
             </h2>
