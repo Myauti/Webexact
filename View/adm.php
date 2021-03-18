@@ -69,6 +69,12 @@
                 <li>
                     <a href="./Crud/crudUnid.php"><span class="fa fa-book mr-3"></span> Unidades de ensino</a>
                 </li>
+                <li>
+                    <a href="./Crud/crudRes.php"><span class="fa fa-book mr-3"></span> Resoluções</a>
+                </li>
+                <li>
+                    <a href="./Crud/crudDiscAlu.php"><span class="fa fa-book mr-3"></span> Disciplina aluno</a>
+                </li>
 
             </ul>
 
