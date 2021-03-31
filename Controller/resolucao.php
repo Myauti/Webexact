@@ -17,10 +17,10 @@ if($resposta == $atividade_resposta){
     $exito = false;
 }
 
-$inserir = "INSERT INTO resolucoes (atividade_resolvida, id_aluno_resolucao, resposta_tentativa, exito) VALUES ('$id_atividade', '$id_aluno', '$resposta', '$exito')";
-$exec = $conec->query($inserir);
-
-
+//$sql="SELECT COUNT(atividade_resolvida) AS total FROM resolucoes WHERE atividade_resolvida = $id_atividade AND id_aluno_resolucao = $id_aluno";
+//$rs = $conec->query($sql);
+//$obj = $rs->fetch_object();
+//$qtd_tentativa = $obj->total;
 
 $sql="SELECT * FROM resolucoes WHERE id_aluno_resolucao = $id_aluno";
 $rs = $conec->query($sql);
@@ -35,7 +35,9 @@ $qtd_tentativa = $obj->qtd_tentativa;
         $qtd_tentativa = 1;
     }
 
-    $atualizar = "UPDATE resolucoes set qtd_tentativa = '$qtd_tentativa' WHERE id_aluno_resolucao = $id_aluno";
-    $rs_atualizar = $conec->query($atualizar);
+$inserir = "INSERT INTO resolucoes (atividade_resolvida, id_aluno_resolucao, qtd_tentativa, resposta_tentativa, exito) VALUES ('$id_atividade', '$id_aluno', '$value', '$resposta', '$exito')";
+$exec = $conec->query($inserir);
 
+
+//checar se há uma resposta, caso não tenha, dar o valor 1, se tiver, somar mais 1 ao valor atual.
 header("Location: ../View/aluno.php");
