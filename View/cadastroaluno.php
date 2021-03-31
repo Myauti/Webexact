@@ -56,7 +56,7 @@
           </div>
 		     <div class="form-group col-md-2">
             <label for="cpf">CPF</label>
-            <input type="text"  class="form-control" name="cpf" placeholder="Apenas números">
+            <input type="text"  class="form-control" name="cpf" maxlenght="11" minlenght="11" placeholder="Apenas números">
           </div>
           <div class="form-group col-md-6">
             <label for="senha">Senha</label>
