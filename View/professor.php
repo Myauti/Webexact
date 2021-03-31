@@ -91,6 +91,7 @@ $result = $conec->query($sql);
                 <p class="d-block"><?php echo "Início da atividade" . " " . " : " . $obj->data_inicio?></p>
                 <p class="d-block"><?php echo "Fim da atividade" . " " . " : " . $obj->data_fim?></p>
                 <a href="../upload/<?php echo $obj->arquivo ?>" target="_blank"> <?php echo $obj->nome ?></a>
+                <a href="#" class="btn btn-primary">Desempenho da atividade</a>
               </div>
             </h2>
             </p>
