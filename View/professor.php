@@ -2,12 +2,21 @@
 session_start();
 include "../Controller/conexao.php";
 $disciplinas = $_SESSION['disciplinas'];
+$id = $_GET['id'];
+//print_r($_SESSION['vetor_disciplinas']);
+//echo array_search($id, $_SESSION['vetor_disciplinas']);
+//die();
+if(array_search($id, $_SESSION['vetor_disciplinas'])== ""){
+  header("Location: disciplinas.php");
+  exit();
+}
+
 $sql = "SELECT u.nome AS nome_professor, d.nome AS disciplina_nome, d.id_disciplinas, p.matricula, a.* FROM atividades AS a 
   INNER JOIN disciplinas AS d ON a.disciplina_atividade = d.id_disciplinas 
   INNER JOIN professor_disciplina AS pd ON d.id_disciplinas = pd.disciplina_vinculada 
   INNER JOIN professores AS p ON pd.professor_vinculado = p.id_professor 
   INNER JOIN usuarios AS u ON u.id_usuario = p.usuario_professor 
-  WHERE pd.disciplina_vinculada IN ($disciplinas)";
+  WHERE pd.disciplina_vinculada = $id";
 
 $result = $conec->query($sql);
 ?>
@@ -59,7 +68,7 @@ $result = $conec->query($sql);
         <a href="adicionar.php" class="btn btn-primary">Adicionar atividade</a>
       </div>
       <div class="col-5">
-        <a href="#" class="btn btn-primary">Desempenho</a>
+        <a href="desempenho.php" class="btn btn-primary">Desempenho dos estudantes</a>
       </div>
       <div class="col-sm">
         <a href="#" class="btn btn-primary">Enviar Feedback</a>
