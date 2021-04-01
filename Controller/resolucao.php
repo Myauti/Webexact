@@ -17,25 +17,29 @@ if($resposta == $atividade_resposta){
     $exito = false;
 }
 
-//$sql="SELECT COUNT(atividade_resolvida) AS total FROM resolucoes WHERE atividade_resolvida = $id_atividade AND id_aluno_resolucao = $id_aluno";
+$sql="SELECT COUNT(atividade_resolvida) FROM resolucoes WHERE atividade_resolvida = $id_atividade AND id_aluno_resolucao = $id_aluno";
+$rs = $conec->query($sql);
+$obj = $rs->fetch_array(MYSQLI_NUM);
+$qtd_tentativa = implode(",", $obj);
+
+if($qtd_tentativa >= 1){
+    $qtd_tentativa = $qtd_tentativa + 1;
+}else {
+    $qtd_tentativa = 1;
+}
+
+
+
+//sql="SELECT * FROM resolucoes WHERE id_aluno_resolucao = $id_aluno";
 //$rs = $conec->query($sql);
 //$obj = $rs->fetch_object();
-//$qtd_tentativa = $obj->total;
-
-$sql="SELECT * FROM resolucoes WHERE id_aluno_resolucao = $id_aluno";
-$rs = $conec->query($sql);
-$obj = $rs->fetch_object();
-$qtd_tentativa = $obj->qtd_tentativa;
+//$qtd_tentativa = $obj->qtd_tentativa;
 
 //checar se há uma resposta, caso não tenha, dar o valor 1, se tiver, somar mais 1 ao valor atual.
 
-    if($qtd_tentativa >= 1){
-        $qtd_tentativa = $qtd_tentativa + 1;
-    }else {
-        $qtd_tentativa = 1;
-    }
+    
 
-$inserir = "INSERT INTO resolucoes (atividade_resolvida, id_aluno_resolucao, qtd_tentativa, resposta_tentativa, exito) VALUES ('$id_atividade', '$id_aluno', '$value', '$resposta', '$exito')";
+$inserir = "INSERT INTO resolucoes (atividade_resolvida, id_aluno_resolucao, qtd_tentativa, resposta_tentativa, exito) VALUES ('$id_atividade', '$id_aluno', '$qtd_tentativa', '$resposta', '$exito')";
 $exec = $conec->query($inserir);
 
 
