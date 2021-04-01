@@ -1,12 +1,12 @@
 <?php
 session_start();
 include "../Controller/conexao.php";
-$disciplinas = $_SESSION['disciplinas'];
+$disciplinas = $_SESSION['disciplinasProf'];
 $id = $_GET['id'];
 //print_r($_SESSION['vetor_disciplinas']);
 //echo array_search($id, $_SESSION['vetor_disciplinas']);
 //die();
-if(array_search($id, $_SESSION['vetor_disciplinas'])== ""){
+if(array_search($id, $_SESSION['vetor_disciplinas_prof'])== ""){
   header("Location: disciplinas.php");
   exit();
 }
@@ -19,6 +19,15 @@ $sql = "SELECT u.nome AS nome_professor, d.nome AS disciplina_nome, d.id_discipl
   WHERE pd.disciplina_vinculada = $id";
 
 $result = $conec->query($sql);
+
+$consulta = "SELECT u.nome as nome_usuario, aluno_disciplina.* FROM aluno_disciplina 
+INNER JOIN alunos AS a ON aluno_disciplina.aluno_vinculado = a.id_aluno 
+INNER JOIN usuarios as u ON u.id_usuario = a.usuario_aluno
+WHERE aluno_disciplina_vinculada = $id";
+
+$consultaRes = $conec->query($consulta);
+//$variavel = $consultaRes->fetch_object();
+//$nomes = $variavel->nome_usuario;
 ?>
 
 <!doctype html>
@@ -68,7 +77,7 @@ $result = $conec->query($sql);
         <a href="adicionar.php" class="btn btn-primary">Adicionar atividade</a>
       </div>
       <div class="col-5">
-        <a href="desempenho.php" class="btn btn-primary">Desempenho dos estudantes</a>
+        <a href="#" class="btn btn-primary">Desempenho dos estudantes</a>
       </div>
       <div class="col-sm">
         <a href="#" class="btn btn-primary">Enviar Feedback</a>
@@ -91,7 +100,7 @@ $result = $conec->query($sql);
                 <p class="d-block"><?php echo "Início da atividade" . " " . " : " . $obj->data_inicio?></p>
                 <p class="d-block"><?php echo "Fim da atividade" . " " . " : " . $obj->data_fim?></p>
                 <a href="../upload/<?php echo $obj->arquivo ?>" target="_blank"> <?php echo $obj->nome ?></a>
-                <a href="#" class="btn btn-primary">Desempenho da atividade</a>
+                <a href="desAtv.php?id=<?php echo $obj->id_atividades?>" class="btn btn-primary mt-4">Desempenho da atividade</a>
               </div>
             </h2>
             </p>
