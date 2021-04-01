@@ -2,21 +2,23 @@
 session_start();
 include "../Controller/conexao.php";
 $id = $_SESSION['id_user'];
-$disciplinas = $_SESSION['disciplinas'];
-
+$disciplinas = $_SESSION['disciplinasAluno'];
 
 $sql = "SELECT * FROM usuarios WHERE id_usuario = $id";
 $result = $conec->query($sql);
-$obj = $result->fetch_object();
+$consulta = $result->fetch_object();
 
 $atividades = "SELECT u.nome AS nome_aluno, d.nome AS disciplina_nome, d.id_disciplinas, al.matricula, a.* FROM atividades AS a 
 INNER JOIN disciplinas AS d ON a.disciplina_atividade = d.id_disciplinas 
 INNER JOIN aluno_disciplina AS ad ON d.id_disciplinas = ad.aluno_disciplina_vinculada 
 INNER JOIN alunos AS al ON ad.aluno_vinculado = al.id_aluno
 INNER JOIN usuarios AS u ON u.id_usuario = al.usuario_aluno
-WHERE ad.aluno_disciplina_vinculada IN ($disciplinas)";
+WHERE ad.aluno_disciplina_vinculada = $disciplinas AND ad.aluno_vinculado = $id";
+
+
 
 $rs = $conec->query($atividades);
+
 ?>
 
 <!doctype html>
@@ -43,7 +45,7 @@ $rs = $conec->query($atividades);
       <ul class="navbar-nav">
 
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item">
@@ -71,7 +73,7 @@ $rs = $conec->query($atividades);
 
   <!--CONTEÚDO DA PÁGINA-->
   <div class="container">
-    <h1>Olá, <?php echo $obj->nome . "!" ?></h1>
+    <h1>Olá, <?php echo $consulta->nome . "!" ?></h1>
     <div class="col d-flex flex-column pt-4 rounded">
       <?php while ($obj = $rs->fetch_object()) { ?>
         <button class="mb-4 rounded" onclick="conteudo(<?php echo $obj->id_atividades; ?>)"><?php echo $obj->nome . " " . "->" . " " . $obj->descricao ?></button>
