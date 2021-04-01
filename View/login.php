@@ -59,7 +59,7 @@
                 <h5 class="card-title text-center">Login</h5>
                 <form class="form-signin" method="POST" action="../Controller/logar.php">
                   <div class="form-label-group">
-                    <input type="text" name="lCpf" class="form-control" placeholder="Digite seu cpf" maxlenght="11" minlenght="11"required autofocus>
+                    <input type="text" name="lCpf" class="form-control" placeholder="Digite seu cpf" maxlength="11" minlength="11" required autofocus>
                     <label for="lCpf">Seu CPF</label>
                   </div>
     
