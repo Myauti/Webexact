@@ -59,7 +59,7 @@ $stringMontada = "[" . $string . "," . $stringN . "," . $stringS . "]";
     ?> 
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-    <div class="card mt-5" style="width: 40rem;">
+    <div class="card mt-5" style="width: 40rem; background-color:#deffff; border-color: #deffff;">
       <canvas id="chartCircular"></canvas>
       <script>
         var ctx = document.getElementById('chartCircular').getContext('2d');
