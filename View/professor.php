@@ -77,7 +77,7 @@ $consultaRes = $conec->query($consulta);
         <a href="adicionar.php" class="btn btn-primary">Adicionar atividade</a>
       </div>
       <div class="col-5">
-        <a href="#" class="btn btn-primary">Desempenho dos estudantes</a>
+        <a href="desEst.php?id=<?php echo $id?>" class="btn btn-primary">Desempenho dos estudantes</a>
       </div>
       <div class="col-sm">
         <a href="#" class="btn btn-primary">Enviar Feedback</a>
