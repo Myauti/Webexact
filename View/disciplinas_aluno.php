@@ -58,7 +58,7 @@ $rs = $conec->query($sql);
     <div class="h-75 container d-flex justify-content-around  mt-5">
       <div class="d-flex p-2">
         <?php while ($obj = $rs->fetch_object()) { ?>
-          <button onclick="window.location.href = 'aluno.php'" type="button" class="mb-4 rounded btn btn-outline-primary btn-lg ml-xxl-3"><?php echo $obj->nome_disciplina?></button>
+          <button onclick="window.location.href = '../Controller/manage.php?id=<?php echo $obj->aluno_disciplina_vinculada ?>'" type="button" class="mb-4 mr-4 rounded btn btn-outline-primary btn-lg ml-xxl-3"><?php echo $obj->nome_disciplina ?></button>
         <?php } ?>
       </div>
     </div>
