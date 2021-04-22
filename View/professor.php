@@ -6,6 +6,9 @@ $id = $_GET['id'];
 //print_r($_SESSION['vetor_disciplinas']);
 //echo array_search($id, $_SESSION['vetor_disciplinas']);
 //die();
+$_SESSION['disciplinas'] = $id;
+
+
 if(array_search($id, $_SESSION['vetor_disciplinas_prof'])== ""){
   header("Location: disciplinas.php");
   exit();
@@ -74,13 +77,13 @@ $consultaRes = $conec->query($consulta);
   <div class="container">
     <div class="row m-3">
       <div class="col-5">
-        <a href="adicionar.php" class="btn btn-primary">Adicionar atividade</a>
+        <a href="adicionar.php" class="btn btn-muted"><b>Adicionar atividade</b></a>
       </div>
       <div class="col-5">
-        <a href="desEst.php?id=<?php echo $id?>" class="btn btn-primary">Desempenho dos estudantes</a>
+        <a href="desEst.php?id=<?php echo $id?>" class="btn btn-muted"><b>Desempenho</b></a>
       </div>
       <div class="col-sm">
-        <a href="#" class="btn btn-primary">Enviar Feedback</a>
+        <a href="#" class="btn btn-muted"><b>Enviar Feedback</b></a>
       </div>
     </div>
   </div>
@@ -88,19 +91,19 @@ $consultaRes = $conec->query($consulta);
   <div class="container">
     <div class="col d-flex flex-column pt-4 rounded">
       <?php while ($obj = $result->fetch_object()) { ?>
-        <button class="mb-4 rounded" onclick="conteudo(<?php echo $obj->id_atividades; ?>)"><?php echo $obj->id_atividades . " " . "-" . " " . $obj->nome . " " . "->" . " " . $obj->descricao ?></button>
+        <button class="mb-4 rounded btn btn-info" onclick="conteudo(<?php echo $obj->id_atividades; ?>)"><?php echo $obj->id_atividades . " " . "-" . " " . $obj->nome . " " . "->" . " " . $obj->descricao ?></button>
         <div id="conteudo-<?php echo $obj->id_atividades; ?>" class="conteudo-oculto">
           <p class="text-center">
           <div class="container text-center texto-grande">
             <p>
             <h2>
-              <div class="card card-signin my-5 colorido">
+              <div class="card card-info my-5">
                 <p class="d-block"><?php echo "Nome" . " " . " : " . $obj->nome ?></p>
                 <p class="d-block"><?php echo "Descrição" . " " . " : " . $obj->descricao?></p>
                 <p class="d-block"><?php echo "Início da atividade" . " " . " : " . $obj->data_inicio?></p>
                 <p class="d-block"><?php echo "Fim da atividade" . " " . " : " . $obj->data_fim?></p>
                 <a href="../upload/<?php echo $obj->arquivo ?>" target="_blank"> <?php echo $obj->nome ?></a>
-                <a href="desAtv.php?id=<?php echo $obj->id_atividades?>" class="btn btn-primary mt-4">Desempenho da atividade</a>
+                <a href="desAtv.php?id=<?php echo $obj->id_atividades?>" class="btn btn-info m-4">Desempenho da atividade</a>
               </div>
             </h2>
             </p>
