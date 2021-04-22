@@ -3,21 +3,26 @@ session_start();
 include "../Controller/conexao.php";
 $id = $_SESSION['id_user'];
 $disciplinas = $_SESSION['disciplinasAluno'];
-
+$atividade = $_SESSION['disc'];
 $sql = "SELECT * FROM usuarios WHERE id_usuario = $id";
 $result = $conec->query($sql);
 $consulta = $result->fetch_object();
 
-$atividades = "SELECT u.nome AS nome_aluno, d.nome AS disciplina_nome, d.id_disciplinas, al.matricula, a.* FROM atividades AS a 
+$atividades = "SELECT u.id_usuario as id_user, u.nome AS nome_aluno, d.nome AS disciplina_nome, d.id_disciplinas, al.matricula, a.* FROM atividades AS a 
 INNER JOIN disciplinas AS d ON a.disciplina_atividade = d.id_disciplinas 
 INNER JOIN aluno_disciplina AS ad ON d.id_disciplinas = ad.aluno_disciplina_vinculada 
 INNER JOIN alunos AS al ON ad.aluno_vinculado = al.id_aluno
 INNER JOIN usuarios AS u ON u.id_usuario = al.usuario_aluno
-WHERE ad.aluno_disciplina_vinculada = $disciplinas AND ad.aluno_vinculado = $id";
-
-
-
+WHERE ad.aluno_disciplina_vinculada = $atividade AND u.id_usuario = $id";
 $rs = $conec->query($atividades);
+
+
+  $resolucoes = "SELECT atividades.disciplina_atividade, resolucoes.atividade_resolvida, resolucoes.id_aluno_resolucao, MAX(resolucoes.qtd_tentativa) as qtd_tentativa FROM resolucoes 
+  INNER JOIN atividades ON resolucoes.atividade_resolvida = atividades.id_atividades
+  WHERE id_aluno_resolucao = $id AND disciplina_atividade = $atividade";
+  $return = $conec->query($resolucoes);
+  $ret = $return->fetch_object();
+
 
 ?>
 
@@ -104,6 +109,11 @@ $rs = $conec->query($atividades);
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary">Enviar</button>
+                  <?php
+                  if ($ret->qtd_tentativa >= 3) {
+                    echo '<button class="btn btn-info">Clique aqui para obter a resolução passo a passo</button>';
+                  }
+                  ?>
                 </form>
 
               </div>
