@@ -1,16 +1,17 @@
 <?php
+session_start();
+$disciplina = $_SESSION['disciplinas'];
 include_once("../Controller/conexao.php");
 $id = $_GET['id'];
+
 $consulta = "SELECT * from usuarios where id_usuario = $id";
 $result = $conec->query($consulta);
 
-
-
-$sql = "SELECT atividades.nome, atividades.descricao, resolucoes.atividade_resolvida, atividades.atividade_resposta,
+$sql = "SELECT atividades.nome, atividades.descricao, atividades.disciplina_atividade, resolucoes.atividade_resolvida, atividades.atividade_resposta,
 resolucoes.id_aluno_resolucao, resolucoes.qtd_tentativa, resolucoes.resposta_tentativa, resolucoes.exito 
 FROM resolucoes 
 INNER JOIN atividades ON resolucoes.atividade_resolvida = atividades.id_atividades
-WHERE id_aluno_resolucao = $id";
+WHERE id_aluno_resolucao = $id AND disciplina_atividade = $disciplina";
 $rs = $conec->query($sql);
 
 ?>
@@ -24,6 +25,7 @@ $rs = $conec->query($sql);
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Webexact</title>
     <link rel="stylesheet" type="text/css" href="estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -62,9 +64,9 @@ $rs = $conec->query($sql);
                 <tbody>
                     <?php while ($obj = $rs->fetch_object()) { 
                         if($obj->exito == false){
-                            $exito = "Não obteve exito";
+                            $exito = '<i class="fas fa-times-circle" style="color:red;"></i>';
                         }else{
-                            $exito = "Obteve exito";
+                            $exito = '<i class="fas fa-check-circle" style="color:#00ba28;"></i>';
                         }
                         ?>
                         <tr>
