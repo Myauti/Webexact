@@ -7,8 +7,6 @@ $id = $_GET['id'];
 //echo array_search($id, $_SESSION['vetor_disciplinas']);
 //die();
 $_SESSION['disciplinas'] = $id;
-
-
 if(array_search($id, $_SESSION['vetor_disciplinas_prof'])== ""){
   header("Location: disciplinas.php");
   exit();
