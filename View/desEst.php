@@ -53,7 +53,7 @@ $rs = $conec->query($sql);
                     <?php while ($obj = $rs->fetch_object()) { ?>
                         <tr>
                             <th scope="row"><?php echo $obj->nome; ?></th>
-                            <th scope="row"><a href="./desempenho.php?id=<?php echo $obj->usuario_aluno ?>" class="btn btn-info">Desempenho</a></th>
+                            <th scope="row"><a href="./desempenho.php?id=<?php echo $obj->usuario_aluno?>" class="btn btn-info">Desempenho</a></th>
                         </tr>
                     <?php } ?>
                 </tbody>
