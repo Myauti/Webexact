@@ -81,7 +81,7 @@ $rs = $conec->query($atividades);
     <h1>Olá, <?php echo $consulta->nome . "!" ?></h1>
     <div class="col d-flex flex-column pt-4 rounded">
       <?php while ($obj = $rs->fetch_object()) { ?>
-        <button class="mb-4 rounded" onclick="conteudo(<?php echo $obj->id_atividades; ?>)"><?php echo $obj->nome . " " . "->" . " " . $obj->descricao ?></button>
+        <button class="mb-4 rounded btn btn-info" onclick="conteudo(<?php echo $obj->id_atividades; ?>)"><?php echo $obj->nome . " " . "->" . " " . $obj->descricao ?></button>
         <div id="conteudo-<?php echo $obj->id_atividades; ?>" class="conteudo-oculto">
           <p class="text-center">
           <div class="container texto-grande">
