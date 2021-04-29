@@ -1,6 +1,6 @@
 <?php 
     include "../../Controller/conexao.php";
-    include "../Controller/seguranca.php";
+    include "../../Controller/seguranca.php";
     $sql = "select * from usuarios";
     $rs = $conec->query($sql);
 ?>
