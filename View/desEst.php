@@ -1,5 +1,6 @@
 <?php
 include_once("../Controller/conexao.php");
+include "../Controller/seguranca.php";
 $id = $_GET['id'];
 $sql = "SELECT usuarios.nome, alunos.id_aluno, alunos.usuario_aluno, aluno_disciplina.* FROM aluno_disciplina 
 INNER JOIN disciplinas ON aluno_disciplina.aluno_disciplina_vinculada = disciplinas.id_disciplinas

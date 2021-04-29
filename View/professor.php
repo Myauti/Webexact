@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../Controller/conexao.php";
+include "../Controller/seguranca.php";
 $disciplinas = $_SESSION['disciplinasProf'];
 $id = $_GET['id'];
 //print_r($_SESSION['vetor_disciplinas']);

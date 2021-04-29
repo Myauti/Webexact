@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../Controller/conexao.php";
+include "../Controller/seguranca.php";
 $id = $_SESSION['id_user'];
 $disciplinas = $_SESSION['disciplinasAluno'];
 $atividade = $_SESSION['disc'];

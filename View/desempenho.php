@@ -2,6 +2,7 @@
 session_start();
 $disciplina = $_SESSION['disciplinas'];
 include_once("../Controller/conexao.php");
+include "../Controller/seguranca.php";
 $id = $_GET['id'];
 
 $consulta = "SELECT * from usuarios where id_usuario = $id";

@@ -1,5 +1,6 @@
 <?php 
     include "../../Controller/conexao.php";
+    include "../../Controller/seguranca.php";
     $sql = "select * from ufs";
     $rs = $conec->query($sql);
 ?>

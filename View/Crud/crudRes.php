@@ -1,5 +1,6 @@
 <?php 
     include "../../Controller/conexao.php";
+    include "../../Controller/seguranca.php";
     $sql = "select * from resolucoes";
     $rs = $conec->query($sql);
 ?>

@@ -1,5 +1,6 @@
 <?php 
     include "../../Controller/conexao.php";
+    include "../../Controller/seguranca.php";
     $sql = "select * from unidades_ensino";
     $rs = $conec->query($sql);
 ?>

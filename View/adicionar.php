@@ -1,5 +1,6 @@
 <?php 
   include_once("../Controller/conexao.php");
+  include "../Controller/seguranca.php";
 ?>
 
 <!doctype html>

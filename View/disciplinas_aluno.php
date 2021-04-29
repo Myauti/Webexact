@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../Controller/conexao.php";
+include "../Controller/seguranca.php";
 $id = $_SESSION['id_user'];
 $sql = "SELECT d.nome as nome_disciplina, u.nome, a.usuario_aluno, ad.* FROM aluno_disciplina AS ad 
 INNER JOIN alunos AS a ON ad.aluno_vinculado = a.id_aluno 

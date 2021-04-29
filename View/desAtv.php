@@ -1,5 +1,6 @@
 <?php
 include_once("../Controller/conexao.php");
+include "../Controller/seguranca.php";
 $id = $_GET['id'];
 
 $atividade = "SELECT * from atividades WHERE id_atividades = $id";
