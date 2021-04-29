@@ -36,11 +36,6 @@
                     value="<?php echo $obj->id_resolucao; ?>">
             </div>
         <div class="form-group">
-            <div class="form-group">
-                <label for="usuario_aluno">usuario_aluno</label>
-                <input id="usuario_aluno" class="form-control" type="number" name="usuario_aluno" required
-                    value="<?php echo $obj->usuario_aluno; ?>">
-            </div>
             <label for="id_aluno_resolucao">id_aluno_resolucao</label>
             <input id="id_aluno_resolucao" class="form-control" type="number" name="id_aluno_resolucao" required
                 value="<?php echo $obj->id_aluno_resolucao; ?>">

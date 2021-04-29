@@ -38,15 +38,14 @@
             </div>
             <div class="form-group">
                 <label for="situacao">situacao</label>
-                <input id="situacao" class="form-control" type="number" name="situacao" required 
+                <input id="situacao" class="form-control" type="text" name="situacao" required 
                     value="<?php echo $obj->situacao;?>">
             </div>
-        </div>
-        <button class="btn btn-success" type="submit">Gravar </button>
-        <a href="../crudMatr.php" class="btn btn-primary">Voltar</a>
+                <button class="btn btn-success" type="submit">Gravar </button>
+                <a href="../crudMatr.php" class="btn btn-primary">Voltar</a>
+            </div>
+        
         </form>
-
-           
 
     </div>
 

@@ -2,7 +2,7 @@
     include "../../../Controller/conexao.php";
     $id = $_GET['id_unidade'];
 
-    $sql = "select * from unidades_ensiono where id_unidade = $id";
+    $sql = "select * from unidades_ensino where id_unidade = $id";
     $rs = $conec->query($sql);
     $obj = $rs->fetch_object();
    
@@ -38,12 +38,13 @@
             </div>
             <div class="form-group">
                 <label for="nome">nome</label>
-                <input id="nome" class="form-control" type="text" name="nome">
+                <input id="nome" class="form-control" type="text" name="nome" required 
+                    value="<?php echo $obj->nome;?>">
             </div>
-
-        </div>
-        <button class="btn btn-success" type="submit">Gravar </button>
+            <button class="btn btn-success" type="submit">Gravar </button>
         <a href="../crudUnid.php" class="btn btn-primary">Voltar</a>
+        </div>
+        
         </form>
 
            

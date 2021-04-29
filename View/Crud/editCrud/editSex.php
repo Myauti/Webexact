@@ -41,9 +41,10 @@
                 <input id="nome" class="form-control" type="text" name="nome" required
                     value="<?php echo $obj->nome;?>">
             </div>
-        </div>
-        <button class="btn btn-success" type="submit">Gravar </button>
+            <button class="btn btn-success" type="submit">Gravar </button>
         <a href="../crudSex.php" class="btn btn-primary">Voltar</a>
+        </div>
+        
         </form>
 
            

@@ -25,7 +25,7 @@
                     <span class="sr-only">Toggle Menu</span>
                 </button>
             </div>
-            <h1><a href="../../index.html" class="logo">Tabelas</a></h1>
+            <h1><a href="adm.php" class="logo">Tabelas</a></h1>
             <ul class="list-unstyled components mb-5">
                 <li>
                     <a href="./Crud/crudAluno.php"><span class="fa fa-group  mr-3"></span> Alunos</a>

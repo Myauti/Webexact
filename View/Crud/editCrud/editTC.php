@@ -38,12 +38,13 @@
             </div>
             <div class="form-group">
                 <label for="turno">turno</label>
-                <input id="turno" class="form-control" type="number" name="turno" required 
+                <input id="turno" class="form-control" type="text" name="turno" required 
                     value="<?php echo $obj->turno;?>">
             </div>
-        </div>
-        <button class="btn btn-success" type="submit">Gravar </button>
+            <button class="btn btn-success" type="submit">Gravar </button>
         <a href="../crudTC.php" class="btn btn-primary">Voltar</a>
+        </div>
+        
         </form>
 
            

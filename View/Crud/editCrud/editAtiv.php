@@ -71,9 +71,10 @@
                 <input id="atividade_resposta" class="form-control" type="text" name="atividade_resposta" required
                     value="<?php echo $obj->atividade_resposta ;?>">
             </div>
-        </div>
+
         <button class="btn btn-success" type="submit">Gravar </button>
         <a href="../crudAtiv.php" class="btn btn-primary">Voltar</a>
+        </div>
         </form>
 
            

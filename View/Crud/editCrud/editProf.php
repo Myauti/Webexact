@@ -66,9 +66,10 @@
             <input id="professor_escolaridade " class="form-control" type="number" name="professor_escolaridade" required
                 value="<?php echo $obj->professor_escolaridade;?>">
         </div>
-        </div>
+        
         <button class="btn btn-success" type="submit">Gravar </button>
         <a href="../crudProf.php" class="btn btn-primary">Voltar</a>
+        </div>
         </form>
 
            

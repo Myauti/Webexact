@@ -41,9 +41,10 @@
                 <input id="escolaridade" class="form-control" type="text" name="escolaridade" required
                     value="<?php echo $obj->escolaridade;?>">
             </div>
-        </div>
+       
         <button class="btn btn-success" type="submit">Gravar </button>
         <a href="../crudEsc.php" class="btn btn-primary">Voltar</a>
+        </div>
         </form>
 
            

@@ -5,7 +5,6 @@
     $sql = "select * from ufs where id_uf = $id";
     $rs = $conec->query($sql);
     $obj = $rs->fetch_object();
-   
 
 ?>
 <!DOCTYPE html>
@@ -32,18 +31,19 @@
         <?php } ?>
         <form method="POST" action="../../../Controller/CrudEditar/editarUF.php">
             <div class="form-group">
-                <label for="id_uf">id_uf</label>
-                <input id="id_uf" class="form-control" type="number" name="id_uf" required
-                    value="<?php echo $obj->id_turno; ?>">
-            </div>
-            <div class="form-group">
                 <label for="sigla">sigla</label>
                 <input id="sigla" class="form-control" type="text" name="sigla" required 
-                    value="<?php echo $obj->turno;?>">
+                    value="<?php echo $obj->sigla;?>">
             </div>
-        </div>
-        <button class="btn btn-success" type="submit">Gravar </button>
+            <div class="form-group">
+                <label for="sigla">estado</label>
+                <input id="sigla" class="form-control" type="text" name="estado" required 
+                    value="<?php echo $obj->estado;?>">
+            </div>
+            <button class="btn btn-success" type="submit">Gravar </button>
         <a href="../crudUF.php" class="btn btn-primary">Voltar</a>
+        </div>
+        
         </form>
 
            

@@ -52,9 +52,9 @@
                     value="<?php echo $obj->periodos_disciplina?>">
             </div>
 
-        </div>
         <button class="btn btn-success" type="submit">Gravar </button>
         <a href="../crudDisc.php" class="btn btn-primary">Voltar</a>
+        </div>
         </form>
 
            

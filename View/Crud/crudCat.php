@@ -30,7 +30,7 @@
                     <span class="sr-only">Toggle Menu</span>
                 </button>
             </div>
-            <h1><a href="index.html" class="logo">Tabelas</a></h1>
+            <h1><a href="../adm.php" class="logo">Tabelas</a></h1>
             <ul class="list-unstyled components mb-5">
                 <li>
                     <a href="crudAluno.php"><span class="fa fa-group  mr-3"></span> Alunos</a>
@@ -74,7 +74,12 @@
                 <li>
                     <a href="crudUnid.php"><span class="fa fa-book mr-3"></span> Unidades de ensino</a>
                 </li>
-
+                <li>
+                    <a href="crudRes.php"><span class="fa fa-book mr-3"></span> Resoluções</a>
+                </li>
+                <li>
+                    <a href="crudDiscAlu.php"><span class="fa fa-book mr-3"></span> Disciplina aluno</a>
+                </li>
             </ul>
 
         </nav>

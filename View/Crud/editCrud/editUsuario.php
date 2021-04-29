@@ -49,11 +49,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="senha">senha</label>
-                <input id="senha" class="form-control" type="password" name="senha" required
-                    value="<?php echo $obj->cpf; ?>">
-            </div>
-            <div class="form-group">
                 <label for="telefone">telefone</label>
                 <input id="telefone" class="form-control" type="number" name="telefone" required
                     value="<?php echo $obj->telefone; ?>">
@@ -78,11 +73,11 @@
                 <input id="grupo_usuario" class="form-control" type="text" name="grupo_usuario" required
                     value="<?php echo $obj->grupo_usuario;?>">
             </div>
-
-        </div>
-        </div>
-        <button class="btn btn-success" type="submit">Gravar </button>
+            <button class="btn btn-success" type="submit">Gravar </button>
         <a href="../crudUsuarios.php" class="btn btn-primary">Voltar</a>
+        </div>
+        </div>
+        
         </form>
 
            

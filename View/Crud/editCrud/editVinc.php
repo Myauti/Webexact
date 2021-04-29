@@ -46,9 +46,10 @@
                 <input id="disciplina_vinculada" class="form-control" type="number" name="disciplina_vinculada" required
                     value="<?php echo $obj->disciplina_vinculada;?>">
             </div>
+            <button class="btn btn-success" type="submit">Gravar </button>
+            <a href="../crudVinc.php" class="btn btn-primary">Voltar</a>
         </div>
-        <button class="btn btn-success" type="submit">Gravar </button>
-        <a href="../crudVinc.php" class="btn btn-primary">Voltar</a>
+        
         </form>
 
            

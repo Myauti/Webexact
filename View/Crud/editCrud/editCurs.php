@@ -56,9 +56,10 @@
                 <input id="unidade" class="form-control" type="number" name="unidade" required
                     value="<?php echo $obj->unidade;?>">
             </div>
-        </div>
+
         <button class="btn btn-success" type="submit">Gravar </button>
         <a href="../crudCurs.php" class="btn btn-primary">Voltar</a>
+        </div>
         </form>
 
            
