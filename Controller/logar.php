@@ -13,6 +13,7 @@ if ((isset($_POST["lCpf"])) && (isset($_POST["lSenha"]))) {
     $sql = "SELECT * FROM usuarios WHERE cpf = '$usuario' && senha = '$senha' LIMIT 1";
     $result = mysqli_query($conec, $sql);
     $resultado = mysqli_fetch_assoc($result);
+    $group_user = $resultado['grupo_usuario'];
     $id_usuario = $resultado['id_usuario'];
 
     if (empty($resultado)) {
@@ -70,6 +71,7 @@ if ((isset($_POST["lCpf"])) && (isset($_POST["lSenha"]))) {
     $_SESSION['disciplinasAluno'] = implode(",", $info);
     $_SESSION['vetor_disciplinas_prof'] = $datas;
     $_SESSION['vetor_disciplinas_aluno'] = $info;
+    $_SESSION['grupo_usuario'] = $group_user;
     
     
 } else {
