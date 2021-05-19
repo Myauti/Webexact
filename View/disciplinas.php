@@ -3,6 +3,17 @@ session_start();
 include "../Controller/conexao.php";
 include "../Controller/seguranca.php";
 $id = $_SESSION['id_user'];
+$grupo_usuario = $_SESSION['grupo_usuario'];
+
+$nivel_necessario = 3;
+
+  // Verifica se não há a variável da sessão que identifica o usuário
+  if (!isset($_SESSION['id_user']) OR ($_SESSION['grupo_usuario'] < $nivel_necessario)) {
+      // Destrói a sessão por segurança
+      session_destroy();
+      // Redireciona o visitante de volta pro login
+      header("Location: ./login.php"); exit;
+  }
 $sql = "SELECT d.nome as nome_disciplina, u.nome, p.usuario_professor, pd.* FROM professor_disciplina AS pd 
   INNER JOIN professores AS p ON pd.professor_vinculado = p.id_professor
   INNER JOIN usuarios AS u ON u.id_usuario = p.usuario_professor
@@ -20,6 +31,7 @@ $rs = $conec->query($sql);
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <title>Webexact</title>
   <link rel="stylesheet" type="text/css" href="estilo.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -38,18 +50,11 @@ $rs = $conec->query($sql);
         <li class="nav-item active">
           <a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Matérias
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Matemática</a>
-            <a class="dropdown-item" href="#">Física</a>
-            <a class="dropdown-item" href="#">Geometria</a>
-          </div>
-        </li>
       </ul>
     </div>
+    <form action="../Controller/logout.php" class="form-inline my-2 my-lg-0">
+      <button class="btn btn-disabled my-2 my-sm-0"><b>Logout</b><i class="fas fa-sign-out-alt ml-2"></i></button>
+    </form>
   </nav>
   <!--MENU DE NAVEGAÇÃO DA PÁGINA-->
 
@@ -59,8 +64,7 @@ $rs = $conec->query($sql);
     <div class="h-75 container d-flex justify-content-around  mt-5">
       <div class="d-flex p-2">
         <?php while ($obj = $rs->fetch_object()) { ?>
-          <button onclick="window.location.href = 'professor.php?id=<?php echo $obj->disciplina_vinculada?>'" 
-          type="button" class="mb-4  mr-3 rounded btn btn-outline-primary btn-lg ml-xxl-3"><?php echo $obj->nome_disciplina?></button>
+          <button onclick="window.location.href = 'professor.php?id=<?php echo $obj->disciplina_vinculada ?>'" type="button" class="mb-4  mr-3 rounded btn btn-outline-primary btn-lg ml-xxl-3"><?php echo $obj->nome_disciplina ?></button>
         <?php } ?>
       </div>
     </div>

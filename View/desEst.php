@@ -2,6 +2,18 @@
 include_once("../Controller/conexao.php");
 include "../Controller/seguranca.php";
 $id = $_GET['id'];
+$id_usuario = $_SESSION['id_user'];
+$grupo_usuario = $_SESSION['grupo_usuario'];
+
+$nivel_necessario = 3;
+
+  // Verifica se não há a variável da sessão que identifica o usuário
+  if (!isset($_SESSION['id_user']) OR ($_SESSION['grupo_usuario'] < $nivel_necessario)) {
+      // Destrói a sessão por segurança
+      session_destroy();
+      // Redireciona o visitante de volta pro login
+      header("Location: ./login.php"); exit;
+  }
 $sql = "SELECT usuarios.nome, alunos.id_aluno, alunos.usuario_aluno, aluno_disciplina.* FROM aluno_disciplina 
 INNER JOIN disciplinas ON aluno_disciplina.aluno_disciplina_vinculada = disciplinas.id_disciplinas
 INNER JOIN alunos ON aluno_disciplina.aluno_vinculado = alunos.id_aluno
@@ -20,6 +32,7 @@ $rs = $conec->query($sql);
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Webexact</title>
     <link rel="stylesheet" type="text/css" href="estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -37,6 +50,9 @@ $rs = $conec->query($sql);
                 </li>
             </ul>
         </div>
+        <form action="../Controller/logout.php" class="form-inline my-2 my-lg-0">
+            <button class="btn btn-disabled my-2 my-sm-0"><b>Logout</b><i class="fas fa-sign-out-alt ml-2"></i></button>
+        </form>
     </nav>
 
     <br>
@@ -54,7 +70,7 @@ $rs = $conec->query($sql);
                     <?php while ($obj = $rs->fetch_object()) { ?>
                         <tr>
                             <th scope="row"><?php echo $obj->nome; ?></th>
-                            <th scope="row"><a href="./desempenho.php?id=<?php echo $obj->usuario_aluno?>" class="btn btn-info">Desempenho</a></th>
+                            <th scope="row"><a href="./desempenho.php?id=<?php echo $obj->usuario_aluno ?>" class="btn btn-info">Desempenho</a></th>
                         </tr>
                     <?php } ?>
                 </tbody>

@@ -36,6 +36,7 @@ $rs = $conec->query($atividades);
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <title>Webexact</title>
   <link rel="stylesheet" type="text/css" href="estilo.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -74,6 +75,9 @@ $rs = $conec->query($atividades);
         </li>
       </ul>
     </div>
+    <form action="../Controller/logout.php" class="form-inline my-2 my-lg-0">
+      <button class="btn btn-disabled my-2 my-sm-0"><b>Logout</b><i class="fas fa-sign-out-alt ml-2"></i></button>
+    </form>
   </nav>
   <!--MENU DE NAVEGAÇÃO DA PÁGINA-->
 

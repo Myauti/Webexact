@@ -17,7 +17,7 @@ div.col{
 
 a.nav-link{
   color: #53F1FF;
-
+  text-decoration: none;
 }
 
 div.dropdown-menu{
@@ -36,4 +36,8 @@ button{
 
 .texto-grande {
   font-size: 12px;
+}
+
+a:link{
+  text-decoration: none;
 }

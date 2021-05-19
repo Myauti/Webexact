@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./Crud/css/style.css">
     <title>Webexact</title>
     <link rel="stylesheet" type="text/css" href="./estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -82,7 +83,9 @@
                 </li>
 
             </ul>
-
+            <form action="../Controller/logout.php" class="form-inline my-2 my-lg-0">
+      <button class="btn btn-disabled my-2 my-sm-0"><b>Logout</b><i class="fas fa-sign-out-alt ml-2"></i></button>
+    </form>
         </nav>
         <div id="content" class="p-4 p-md-5 pt-5">
             <h3 class="mb-4">Selecione uma tabela para editar</h3>

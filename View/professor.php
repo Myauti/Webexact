@@ -3,12 +3,25 @@ session_start();
 include "../Controller/conexao.php";
 include "../Controller/seguranca.php";
 $disciplinas = $_SESSION['disciplinasProf'];
+$id_usuario = $_SESSION['id_user'];
+$grupo_usuario = $_SESSION['grupo_usuario'];
+
+$nivel_necessario = 3;
+
+  // Verifica se não há a variável da sessão que identifica o usuário
+  if (!isset($_SESSION['id_user']) OR ($_SESSION['grupo_usuario'] < $nivel_necessario)) {
+      // Destrói a sessão por segurança
+      session_destroy();
+      // Redireciona o visitante de volta pro login
+      header("Location: ./login.php"); exit;
+  }
+
 $id = $_GET['id'];
 //print_r($_SESSION['vetor_disciplinas']);
 //echo array_search($id, $_SESSION['vetor_disciplinas']);
 //die();
 $_SESSION['disciplinas'] = $id;
-if(array_search($id, $_SESSION['vetor_disciplinas_prof'])== ""){
+if (array_search($id, $_SESSION['vetor_disciplinas_prof']) == "") {
   header("Location: disciplinas.php");
   exit();
 }
@@ -40,6 +53,7 @@ $consultaRes = $conec->query($consulta);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <title>Webexact</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="estilo.css">
 </head>
 
@@ -59,16 +73,14 @@ $consultaRes = $conec->query($consulta);
         <li class="nav-item active">
           <a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link" href="#">Atividades</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Turmas</a>
+          <a class="btn btn-disabled" href="./disciplinas.php"><i class="fas fa-arrow-circle-left mr-2"></i>Voltar</a>
         </li>
       </ul>
     </div>
+    <form action="../Controller/logout.php" class="form-inline my-2 my-lg-0">
+      <button class="btn btn-disabled my-2 my-sm-0"><b>Logout</b><i class="fas fa-sign-out-alt ml-2"></i></button>
+    </form>
   </nav>
   <!--MENU DE NAVEGAÇÃO DA PÁGINA-->
 
@@ -79,7 +91,7 @@ $consultaRes = $conec->query($consulta);
         <a href="adicionar.php" class="btn btn-muted"><b>Adicionar atividade</b></a>
       </div>
       <div class="col-5">
-        <a href="desEst.php?id=<?php echo $id?>" class="btn btn-muted"><b>Desempenho</b></a>
+        <a href="desEst.php?id=<?php echo $id ?>" class="btn btn-muted"><b>Desempenho</b></a>
       </div>
       <div class="col-sm">
         <a href="#" class="btn btn-muted"><b>Enviar Feedback</b></a>
@@ -98,11 +110,11 @@ $consultaRes = $conec->query($consulta);
             <h2>
               <div class="card card-info my-5">
                 <p class="d-block"><?php echo "Nome" . " " . " : " . $obj->nome ?></p>
-                <p class="d-block"><?php echo "Descrição" . " " . " : " . $obj->descricao?></p>
-                <p class="d-block"><?php echo "Início da atividade" . " " . " : " . $obj->data_inicio?></p>
-                <p class="d-block"><?php echo "Fim da atividade" . " " . " : " . $obj->data_fim?></p>
+                <p class="d-block"><?php echo "Descrição" . " " . " : " . $obj->descricao ?></p>
+                <p class="d-block"><?php echo "Início da atividade" . " " . " : " . $obj->data_inicio ?></p>
+                <p class="d-block"><?php echo "Fim da atividade" . " " . " : " . $obj->data_fim ?></p>
                 <a href="../upload/<?php echo $obj->arquivo ?>" target="_blank"> <?php echo $obj->nome ?></a>
-                <a href="desAtv.php?id=<?php echo $obj->id_atividades?>" class="btn btn-info m-4">Desempenho da atividade</a>
+                <a href="desAtv.php?id=<?php echo $obj->id_atividades ?>" class="btn btn-info m-4">Desempenho da atividade</a>
               </div>
             </h2>
             </p>
@@ -116,10 +128,10 @@ $consultaRes = $conec->query($consulta);
 
   <!--<script src="js/bootstrap.js"></script>
   <script src="js/jquery-3.5.1.min.js"></script>-->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
   <script>
     function conteudo(id) {

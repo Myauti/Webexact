@@ -43,6 +43,9 @@ $rs = $conec->query($sql);
                 </li>
             </ul>
         </div>
+        <form action="../Controller/logout.php" class="form-inline my-2 my-lg-0">
+      <button class="btn btn-disabled my-2 my-sm-0"><b>Logout</b><i class="fas fa-sign-out-alt ml-2"></i></button>
+    </form>
     </nav>
 
     <br>
