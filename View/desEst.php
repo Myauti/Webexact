@@ -5,6 +5,11 @@ $id = $_GET['id'];
 $id_usuario = $_SESSION['id_user'];
 $grupo_usuario = $_SESSION['grupo_usuario'];
 
+if(!isset($id)){
+    $_SESSION['loginErro'] = "<p>Por favor, acesse essa página pelo modo convencional!</p>";
+    header('Location: ./disciplinas.php');
+}
+
 $nivel_necessario = 3;
 
   // Verifica se não há a variável da sessão que identifica o usuário

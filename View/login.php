@@ -1,6 +1,5 @@
 <?php
   session_start();
-  $var = $_GET['id'];
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -73,10 +72,6 @@
                   <p>
                     <?php 
                       //Recuperando o valor da variável global, os erro de login.
-                      if($var == 1){
-                        echo '<h2>Você precisa estar logado para acessar essa página!</h2>';
-                      }
-
                       if(isset($_SESSION['loginErro'])){
                         echo $_SESSION['loginErro'];
                         unset($_SESSION['loginErro']);

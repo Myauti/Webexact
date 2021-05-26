@@ -1,12 +1,14 @@
 <?php
 session_start();
-include "../Controller/conexao.php";
 include "../Controller/seguranca.php";
+include "../Controller/conexao.php";
 $id = $_SESSION['id_user'];
 $grupo_usuario = $_SESSION['grupo_usuario'];
 
 $nivel_necessario = 3;
-
+  if(isset($_SESSION['loginErro'])){
+        echo '<script>alert("Por favor, acesse essa página de maneira convencional!")</script>';
+      }
   // Verifica se não há a variável da sessão que identifica o usuário
   if (!isset($_SESSION['id_user']) OR ($_SESSION['grupo_usuario'] < $nivel_necessario)) {
       // Destrói a sessão por segurança

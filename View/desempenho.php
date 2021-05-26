@@ -5,6 +5,11 @@ include_once("../Controller/conexao.php");
 include "../Controller/seguranca.php";
 $id = $_GET['id'];
 
+if(!isset($id)){
+    $_SESSION['loginErro'] = "<p>Por favor, acesse essa página pelo modo convencional!</p>";
+    header('Location: ./disciplinas.php');
+}
+
 $consulta = "SELECT * from usuarios where id_usuario = $id";
 $result = $conec->query($consulta);
 
