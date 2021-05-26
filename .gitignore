@@ -8,3 +8,9 @@ archive/
 #ignorar o arquivo de configuração local
 
 .git/
+
+#ignorar pasta do node
+
+node_modules/
+
+package-lock.json
