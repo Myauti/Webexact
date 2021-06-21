@@ -2,6 +2,8 @@
 session_start();
 include "../Controller/conexao.php";
 include "../Controller/seguranca.php";
+
+//resgatando variaveis de sessao
 $disciplinas = $_SESSION['disciplinasProf'];
 $id_usuario = $_SESSION['id_user'];
 $grupo_usuario = $_SESSION['grupo_usuario'];
@@ -16,10 +18,8 @@ $nivel_necessario = 3;
       header("Location: ./login.php"); exit;
   }
 
-$id = $_GET['id'];
-//print_r($_SESSION['vetor_disciplinas']);
-//echo array_search($id, $_SESSION['vetor_disciplinas']);
-//die();
+$id = $_GET['id'];//Recebe o id por get na url
+
 $_SESSION['disciplinas'] = $id;
 if (array_search($id, $_SESSION['vetor_disciplinas_prof']) == "") {
   header("Location: disciplinas.php");
@@ -31,16 +31,16 @@ $sql = "SELECT u.nome AS nome_professor, d.nome AS disciplina_nome, d.id_discipl
   INNER JOIN professor_disciplina AS pd ON d.id_disciplinas = pd.disciplina_vinculada 
   INNER JOIN professores AS p ON pd.professor_vinculado = p.id_professor 
   INNER JOIN usuarios AS u ON u.id_usuario = p.usuario_professor 
-  WHERE pd.disciplina_vinculada = $id";
+  WHERE pd.disciplina_vinculada = $id"; //Exibe todas as atividades para a disciplina que o professor está acessando.
 
-$result = $conec->query($sql);
+$result = $conec->query($sql);//Realiza a consulta
 
 $consulta = "SELECT u.nome as nome_usuario, aluno_disciplina.* FROM aluno_disciplina 
 INNER JOIN alunos AS a ON aluno_disciplina.aluno_vinculado = a.id_aluno 
 INNER JOIN usuarios as u ON u.id_usuario = a.usuario_aluno
-WHERE aluno_disciplina_vinculada = $id";
+WHERE aluno_disciplina_vinculada = $id"; //Essa consulta retorna os dados dos alunos que estão vinculados nessa disciplina selecionada
 
-$consultaRes = $conec->query($consulta);
+$consultaRes = $conec->query($consulta); //Realiza a consulta
 //$variavel = $consultaRes->fetch_object();
 //$nomes = $variavel->nome_usuario;
 ?>
@@ -88,22 +88,22 @@ $consultaRes = $conec->query($consulta);
   <div class="container">
     <div class="row m-3">
       <div class="col-5">
-        <a href="adicionar.php" class="btn btn-muted"><b>Adicionar atividade</b></a>
+        <!--tag a com estilo de botao-->
+        <!--Envia para adicionar.php-->
+        <a href="adicionar.php" class="btn btn-muted"><b>Adicionar atividade</b></a> 
       </div>
       <div class="col-5">
-        <a href="desEst.php?id=<?php echo $id ?>" class="btn btn-muted"><b>Desempenho</b></a>
-      </div>
-      <div class="col-sm">
-        <a href="#" class="btn btn-muted"><b>Enviar Feedback</b></a>
+        <!--Envia para a página de desempenho de estudante-->
+        <a href="desEst.php?id=<?php echo $id ?>" class="btn btn-muted"><b>Desempenho</b></a><!--Envia para desEst-->
       </div>
     </div>
   </div>
 
   <div class="container">
     <div class="col d-flex flex-column pt-4 rounded">
-      <?php while ($obj = $result->fetch_object()) { ?>
+      <?php while ($obj = $result->fetch_object()) { ?> <!--Enquanto receber dados da consulta-->
         <button class="mb-4 rounded btn btn-info" onclick="conteudo(<?php echo $obj->id_atividades; ?>)"><?php echo $obj->id_atividades . " " . "-" . " " . $obj->nome . " " . "->" . " " . $obj->descricao ?></button>
-        <div id="conteudo-<?php echo $obj->id_atividades; ?>" class="conteudo-oculto">
+        <div id="conteudo-<?php echo $obj->id_atividades; ?>" class="conteudo-oculto"><!--Div recebe id dinamico-->
           <p class="text-center">
           <div class="container text-center texto-grande">
             <p>

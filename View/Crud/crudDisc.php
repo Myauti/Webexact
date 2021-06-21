@@ -104,8 +104,8 @@
                         <th scope="row"><?php echo $obj->curso_disciplina; ?></th>
                         <th scope="row"><?php echo $obj->periodos_disciplina; ?></th>
                         <td>
-                            <a href="./editCrud/editDisc.php?id_disciplinas=<?php echo $obj->id_disciplina; ?>" class="btn btn-sm btn-warning" > Editar </a>
-                            <a href="#" onclick="excluir(<?php echo $obj->id_disciplina; ?>)" class="btn btn-sm btn-danger" > Excluir </a>
+                            <a href="./editCrud/editDisc.php?id_disciplinas=<?php echo $obj->id_disciplinas; ?>" class="btn btn-sm btn-warning" > Editar </a>
+                            <a href="#" onclick="excluir(<?php echo $obj->id_disciplinas; ?>)" class="btn btn-sm btn-danger" > Excluir </a>
                        
                         </td>
                     

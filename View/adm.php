@@ -43,7 +43,7 @@
                     <a href="./Crud/crudProf.php"><span class="fa fa-group mr-3"></span> Professores</a>
                 </li>
                 <li>
-                    <a href="./Crud/crudDisc.php"><span class="fa fa-folder-open-o mr-3"></span> Disciplinas</a>
+                    <a href="./Crud/crudDisc.php"><span class="fa fa-folder-open mr-3"></span> Disciplinas</a>
                 </li>
                 <li>
                     <a href="./Crud/crudSex.php"><span class="fa fa-book mr-3"></span> Sexos</a>

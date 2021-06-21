@@ -21,12 +21,14 @@ if ((isset($_POST["lCpf"])) && (isset($_POST["lSenha"]))) {
         header("Location: ../View/login.php");
     } elseif (isset($resultado)) {
         $_SESSION['usuarioId'] = $resultado['grupo_usuario'];
-
-        if ($_SESSION['usuarioId'] == "3") {
+        
+        
+        //Condição para definir a página que o usuario a logar será enviado.
+        if ($_SESSION['usuarioId'] == "3") {//se for 3 (professor) vai pra disciplinas.php
             header("Location: ../View/disciplinas.php");
-        } elseif ($_SESSION['usuarioId'] == "2") {
+        } elseif ($_SESSION['usuarioId'] == "2") {//se for 2(aluno) vai pra disciplinas_aluno.php
             header("Location: ../View/disciplinas_aluno.php");
-        } elseif ($_SESSION['usuarioId'] == "1") {
+        } elseif ($_SESSION['usuarioId'] == "1") { //se for 1 (adm) vai pra adm.php
             header("Location: ../View/adm.php");
         }
     } else {
@@ -37,14 +39,14 @@ if ((isset($_POST["lCpf"])) && (isset($_POST["lSenha"]))) {
     $consulta = "SELECT pd.disciplina_vinculada FROM professor_disciplina as pd 
         INNER JOIN professores as p ON pd.professor_vinculado = p.id_professor 
         INNER JOIN usuarios as u ON p.usuario_professor = u.id_usuario 
-        WHERE u.id_usuario = $id_usuario";
+        WHERE u.id_usuario = $id_usuario"; //Essa consulta devolve a disciplina que o usuário está vinculado
 
     $varConsulta = $conec->query($consulta);
 
-    $datas = array();
-    $p = 0;
+    $datas = array(); //Cria um array e guarda ele na variavel datas
+    $p = 0; // cria variavel p valendo 0
 
-    while ($obj = $varConsulta->fetch_object()) {
+    while ($obj = $varConsulta->fetch_object()) { 
         $datas[$p] = $obj->disciplina_vinculada;
         $p++;
     }
@@ -52,7 +54,7 @@ if ((isset($_POST["lCpf"])) && (isset($_POST["lSenha"]))) {
     $consultaAluno = "SELECT ad.aluno_disciplina_vinculada FROM aluno_disciplina as ad 
         INNER JOIN alunos as a ON ad.aluno_vinculado = a.id_aluno
         INNER JOIN usuarios as u ON a.usuario_aluno = u.id_usuario 
-        WHERE u.id_usuario = $id_usuario";
+        WHERE u.id_usuario = $id_usuario"; //Consulta traz disciplina que o aluno está vinculado
 
     $varConsultaAluno = $conec->query($consultaAluno);
 
@@ -64,14 +66,14 @@ if ((isset($_POST["lCpf"])) && (isset($_POST["lSenha"]))) {
         $i++;
     }
 
-    $_SESSION['id_user'] = $resultado['id_usuario'];
-    $_SESSION['usuario'] = $usuario;
-    $_SESSION['senha'] = $senha;
-    $_SESSION['disciplinasProf'] = implode(",", $datas);
-    $_SESSION['disciplinasAluno'] = implode(",", $info);
-    $_SESSION['vetor_disciplinas_prof'] = $datas;
-    $_SESSION['vetor_disciplinas_aluno'] = $info;
-    $_SESSION['grupo_usuario'] = $group_user;
+    $_SESSION['id_user'] = $resultado['id_usuario'];//ID de quem logou
+    $_SESSION['usuario'] = $usuario;//Usuario de quem logou
+    $_SESSION['senha'] = $senha;//senha de quem logou
+    $_SESSION['disciplinasProf'] = implode(",", $datas); //disciplinas do professor que logou
+    $_SESSION['disciplinasAluno'] = implode(",", $info); // disciplinas do aluno que logou
+    $_SESSION['vetor_disciplinas_prof'] = $datas; // Array das disciplinas do professor que logou
+    $_SESSION['vetor_disciplinas_aluno'] = $info; // Array das disciplinas do aluno que logou
+    $_SESSION['grupo_usuario'] = $group_user; // Grupo de usuarios de quem logou
     
     
 } else {

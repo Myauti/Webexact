@@ -30,17 +30,6 @@
             <li class="nav-item">
               <a class="nav-link" href="login.php">Login</a>
             </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Matérias
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Matemática</a>
-                <a class="dropdown-item" href="#">Física</a>
-                <a class="dropdown-item" href="#">Geometria</a>
-              </div>
-            </li>
           </ul>
         </div>
       </nav>

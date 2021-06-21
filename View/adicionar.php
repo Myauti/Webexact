@@ -26,6 +26,8 @@ if (!isset($_SESSION['id_user']) or ($_SESSION['grupo_usuario'] < $nivel_necessa
   <title>Webexact</title>
   <link rel="stylesheet" type="text/css" href="estilo.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -40,6 +42,9 @@ if (!isset($_SESSION['id_user']) or ($_SESSION['grupo_usuario'] < $nivel_necessa
       <ul class="navbar-nav">
         <li class="nav-item active">
           <a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-disabled" href="./professor.php?id=<?php echo $id_usuario?>"><i class="fas fa-arrow-circle-left mr-2"></i>Voltar</a>
         </li>
       </ul>
     </div>

@@ -4,8 +4,9 @@ $disciplina = $_SESSION['disciplinas'];
 include_once("../Controller/conexao.php");
 include "../Controller/seguranca.php";
 $id = $_GET['id'];
+$id_usuario = $_SESSION['id_user'];
 
-if(!isset($id)){
+if (!isset($id)) {
     $_SESSION['loginErro'] = "<p>Por favor, acesse essa página pelo modo convencional!</p>";
     header('Location: ./disciplinas.php');
 }
@@ -46,18 +47,21 @@ $rs = $conec->query($sql);
                 <li class="nav-item active">
                     <a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="btn btn-disabled" href="./desEst.php?id=<?php echo $id_usuario ?>"><i class="fas fa-arrow-circle-left mr-2"></i>Voltar</a>
+                </li>
             </ul>
         </div>
         <form action="../Controller/logout.php" class="form-inline my-2 my-lg-0">
-      <button class="btn btn-disabled my-2 my-sm-0"><b>Logout</b><i class="fas fa-sign-out-alt ml-2"></i></button>
-    </form>
+            <button class="btn btn-disabled my-2 my-sm-0"><b>Logout</b><i class="fas fa-sign-out-alt ml-2"></i></button>
+        </form>
     </nav>
 
     <br>
     <div class="container-md d-flex flex-column align-items-center">
-        <?php 
+        <?php
         $object = $result->fetch_object();
-        echo "<h1>Informações de desempenho do aluno:" . " " . "<b>" . $object->nome . "</b>". "</h1>"?>
+        echo "<h1>Informações de desempenho do aluno:" . " " . "<b>" . $object->nome . "</b>" . "</h1>" ?>
         <div id="content" class="p-4 p-md-5 pt-5">
             <table class="table table-info">
                 <thead class="thead-info">
@@ -71,13 +75,13 @@ $rs = $conec->query($sql);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($obj = $rs->fetch_object()) { 
-                        if($obj->exito == false){
+                    <?php while ($obj = $rs->fetch_object()) {
+                        if ($obj->exito == false) {
                             $exito = '<i class="fas fa-times-circle" style="color:red;"></i>';
-                        }else{
+                        } else {
                             $exito = '<i class="fas fa-check-circle" style="color:#00ba28;"></i>';
                         }
-                        ?>
+                    ?>
                         <tr>
                             <th scope="row"><?php echo $obj->nome; ?></th>
                             <th scope="row"><?php echo $obj->descricao; ?></th>

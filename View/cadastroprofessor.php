@@ -30,17 +30,6 @@
             <li class="nav-item">
               <a class="nav-link" href="login.php">Login</a>
             </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Matérias
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Matemática</a>
-                <a class="dropdown-item" href="#">Física</a>
-                <a class="dropdown-item" href="#">Geometria</a>
-              </div>
-            </li>
           </ul>
         </div>
       </nav>
@@ -48,7 +37,7 @@
 
       <div class="container">
         <h1>Cadastro de professor</h1>
-      
+        <!--enctype é necessário, pois, enviamos arquivos pelo formulário-->
         <form action="../Controller/cadastrarProfessor.php" method="POST" enctype="multipart/form-data">
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -67,15 +56,16 @@
           <div class="form-group">
             <label for="unidade">Unidade</label>
             <select name="unidade" class="form-control">
-            <option selected>Escolher...</option>
+            <option selected>Escolher...</option><!--O que vai ser exibido como opção por padrão-->
             <?php
                 $sql = "SELECT * FROM unidades_ensino";
                 $resultado = mysqli_query($conec, $sql);
 
+                //Loop para printar dados recebidos da consulta sql;
                 while($row_resultados = mysqli_fetch_assoc($resultado)){ ?>
                   <option value="<?php echo $row_resultados['id_unidade'];?>">
                     <?php
-                      echo $row_resultados['nome']; 
+                      echo $row_resultados['nome']; //Printar dados
                     ?>
                   </option> 
                   <?php 
@@ -132,11 +122,12 @@
                 <?php
                 $sql = "SELECT * FROM sexos";
                 $resultado = mysqli_query($conec, $sql);
-
+                
+                //Loop para printar resultados da consulta sql
                 while($row_resultados = mysqli_fetch_assoc($resultado)){ ?>
                   <option value="<?php echo $row_resultados['id_sexo'];?>">
                     <?php
-                      echo $row_resultados['nome']; 
+                      echo $row_resultados['nome']; //Printar resultados
                     ?>
                   </option> 
                   <?php 
@@ -152,11 +143,11 @@
               <?php
                 $sql = "SELECT * FROM escolaridades";
                 $resultado = mysqli_query($conec, $sql);
-
+                //Loop para printar resultados da consulta sql
                 while($row_resultados = mysqli_fetch_assoc($resultado)){ ?>
                   <option value="<?php echo $row_resultados['id_escolaridade'];?>">
                     <?php
-                      echo $row_resultados['escolaridade']; 
+                      echo $row_resultados['escolaridade']; //Printar resultados
                     ?>
                   </option> 
                   <?php 
@@ -169,7 +160,7 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="comprovante">Comprovante</label>
-                <input type="file" name="comprovante" class="form-control-file mb-2">
+                <input type="file" name="comprovante" class="form-control-file mb-2"><!--input do comprovante-->
                 <button type="submit" name="submit" class="btn btn-primary">Enviar solicitação de cadastro</button>
               </div>
           </div>

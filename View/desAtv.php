@@ -2,6 +2,7 @@
 include_once("../Controller/conexao.php");
 include "../Controller/seguranca.php";
 $id = $_GET['id'];
+$id_usuario = $_SESSION['id_user'];
 
 $atividade = "SELECT * from atividades WHERE id_atividades = $id";
 $a = $conec->query($atividade);
@@ -50,6 +51,9 @@ $stringMontada = "[" . $string . "," . $stringN . "," . $stringS . "]";
         <li class="nav-item active">
           <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item">
+          <a class="btn btn-disabled" href="./professor.php?id=<?php echo $id_usuario ?>"><i class="fas fa-arrow-circle-left mr-2"></i>Voltar</a>
+        </li>
       </ul>
     </div>
     <form action="../Controller/logout.php" class="form-inline my-2 my-lg-0">
@@ -60,9 +64,9 @@ $stringMontada = "[" . $string . "," . $stringN . "," . $stringS . "]";
   <br>
   <div class="container-md d-flex flex-column align-items-center">
     <?php $objeto = $a->fetch_object();
-      echo "<h1>Desempenho da atividade: " . $objeto->nome . "</h1>";
-    ?> 
-    
+    echo "<h1>Desempenho da atividade: " . $objeto->nome . "</h1>";
+    ?>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     <div class="card mt-5" style="width: 40rem; background-color:#deffff; border-color: #deffff;">
       <canvas id="chartCircular"></canvas>
@@ -71,18 +75,16 @@ $stringMontada = "[" . $string . "," . $stringN . "," . $stringS . "]";
         var myChart = new Chart(document.getElementById("chartCircular"), {
           "type": "doughnut",
           "data": {
-            "labels": ["Quantidade de tentativas", "Quantidade de acertos", "Quantidade de erros"],
+            "labels": ["Quantidade de tentativas", "Quantidade de erros", "Quantidade de acertos"],
             "datasets": [{
               "label": "Informações do estudante",
               "data": <?php echo $stringMontada ?>,
-              "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+              "backgroundColor": ["rgb(255, 99, 132)", "rgb(255, 205, 86)", "rgb(54, 162, 235)"]
             }]
           }
         });
       </script>
     </div>
-
-
   </div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

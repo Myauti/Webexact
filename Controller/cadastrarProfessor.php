@@ -1,7 +1,7 @@
 <?php
 include_once("conexao.php");
-//CADASTRO DE USUARIO
 
+//CADASTRO DE USUARIO
 $nome = $_POST['nome'];
 $cpf = $_POST['cpf'];
 $senha = $_POST['senha'];
@@ -10,7 +10,8 @@ $telefone = $_POST['telefone_pessoal'];
 $dataNasc = $_POST['dataNasc'];
 $sexo = $_POST['sexo'];
 $email_pessoal = $_POST['email_pessoal'];
-$grupo = 3;
+$grupo = 3;//Como estou cadastrando um professor, o grupo de usuário sempre vai ser 3 (Professor)
+
 
 //CAMPOS DO PROFESSOR
 $unidade = $_POST['unidade'];
@@ -23,14 +24,15 @@ $inserir = "INSERT INTO usuarios (nome, cpf, senha, telefone, email, data_nascim
     VALUES ('$nome', '$cpf', '$senha', '$telefone', '$email_pessoal', '$dataNasc', '$sexo', '$grupo')";
 
 $resultado_inserir = $conec->query($inserir); // Realiza a inserção no banco
-$id_inserido = $conec->insert_id; // Todas as duas funcionam
-//$id_inserido = mysqli_insert_id($conec); // Escolha a que você achar mais fácil
+$id_inserido = $conec->insert_id;//Pega o id inserido
+
 
 $inserir_professor = "INSERT INTO professores (usuario_professor, unidade_ensino_professor, email_profissional, telefone_profissional, matricula, professor_escolaridade) 
     VALUES ('$id_inserido','$unidade', '$email_profissional', '$telefone_profissional', '$matricula', '$escolaridade')";
 $resultado_inserir_aluno = mysqli_query($conec, $inserir_professor);
 
-if (isset($_POST['submit'])) {
+
+if(isset($_POST['submit'])) {
     $file = $_FILES['comprovante'];
 
     $fileName = $_FILES['comprovante']['name'];

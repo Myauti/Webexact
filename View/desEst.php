@@ -5,20 +5,21 @@ $id = $_GET['id'];
 $id_usuario = $_SESSION['id_user'];
 $grupo_usuario = $_SESSION['grupo_usuario'];
 
-if(!isset($id)){
+if (!isset($id)) {
     $_SESSION['loginErro'] = "<p>Por favor, acesse essa página pelo modo convencional!</p>";
     header('Location: ./disciplinas.php');
 }
 
 $nivel_necessario = 3;
 
-  // Verifica se não há a variável da sessão que identifica o usuário
-  if (!isset($_SESSION['id_user']) OR ($_SESSION['grupo_usuario'] < $nivel_necessario)) {
-      // Destrói a sessão por segurança
-      session_destroy();
-      // Redireciona o visitante de volta pro login
-      header("Location: ./login.php"); exit;
-  }
+// Verifica se não há a variável da sessão que identifica o usuário
+if (!isset($_SESSION['id_user']) or ($_SESSION['grupo_usuario'] < $nivel_necessario)) {
+    // Destrói a sessão por segurança
+    session_destroy();
+    // Redireciona o visitante de volta pro login
+    header("Location: ./login.php");
+    exit;
+}
 $sql = "SELECT usuarios.nome, alunos.id_aluno, alunos.usuario_aluno, aluno_disciplina.* FROM aluno_disciplina 
 INNER JOIN disciplinas ON aluno_disciplina.aluno_disciplina_vinculada = disciplinas.id_disciplinas
 INNER JOIN alunos ON aluno_disciplina.aluno_vinculado = alunos.id_aluno
@@ -52,6 +53,9 @@ $rs = $conec->query($sql);
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     <a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-disabled" href="./professor.php?id=<?php echo $id_usuario ?>"><i class="fas fa-arrow-circle-left mr-2"></i>Voltar</a>
                 </li>
             </ul>
         </div>

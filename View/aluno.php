@@ -17,12 +17,13 @@ INNER JOIN usuarios AS u ON u.id_usuario = al.usuario_aluno
 WHERE ad.aluno_disciplina_vinculada = $atividade AND u.id_usuario = $id";
 $rs = $conec->query($atividades);
 
+$resolucoes = "SELECT atividades.disciplina_atividade, resolucoes.atividade_resolvida, MAX(resolucoes.exito) as exito, resolucoes.id_aluno_resolucao, MAX(resolucoes.qtd_tentativa) as qtd_tentativa FROM resolucoes 
+INNER JOIN atividades ON resolucoes.atividade_resolvida = atividades.id_atividades
+WHERE id_aluno_resolucao = $id AND disciplina_atividade = $atividade";
+$return = $conec->query($resolucoes);
+$ret = $return->fetch_object();
 
-  $resolucoes = "SELECT atividades.disciplina_atividade, resolucoes.atividade_resolvida, resolucoes.id_aluno_resolucao, MAX(resolucoes.qtd_tentativa) as qtd_tentativa FROM resolucoes 
-  INNER JOIN atividades ON resolucoes.atividade_resolvida = atividades.id_atividades
-  WHERE id_aluno_resolucao = $id AND disciplina_atividade = $atividade";
-  $return = $conec->query($resolucoes);
-  $ret = $return->fetch_object();
+
 
 
 ?>
@@ -33,10 +34,11 @@ $rs = $conec->query($atividades);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!--Abaixo import do bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <title>Webexact</title>
-  <link rel="stylesheet" type="text/css" href="estilo.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Webexact</title><!--Titulo-->
+  <link rel="stylesheet" type="text/css" href="estilo.css"><!--Import da nossa propria estilização-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Import do font awesome para utilização de icones-->
 </head>
 
 <body>
@@ -61,17 +63,6 @@ $rs = $conec->query($atividades);
 
         <li class="nav-item">
           <a class="nav-link" href="login.php">Turma</a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Matérias
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Matemática</a>
-            <a class="dropdown-item" href="#">Física</a>
-            <a class="dropdown-item" href="#">Geometria</a>
-          </div>
         </li>
       </ul>
     </div>
@@ -115,8 +106,35 @@ $rs = $conec->query($atividades);
                   </div>
                   <button type="submit" class="btn btn-primary">Enviar</button>
                   <?php
-                  if ($ret->qtd_tentativa >= 3) {
-                    echo '<button class="btn btn-info">Clique aqui para obter a resolução passo a passo</button>';
+                  
+                  
+                  $id_a = $obj->id_atividades; //armazena valor do id da atividade respectiva pra cada item
+                  
+                  if(isset($_GET['ex']) && isset($_GET['atvreso'])){ //verifica se recebeu os valores pelo get usando o isset e dentro do if armazena os valores do get em variaveis
+                    $ex = $_GET['ex'];
+                    $atv_reso = $_GET['atvreso'];
+                    
+                    
+                    if($atv_reso == $id_a && $ex < 1){//verifica se o valor recebido da atividade pelo get é o msm do id da atividade que estou abrindo e verifica também se o exito do aluno é menor que 1 (no caso 0 =falso)
+                      
+                      echo '<i class="fas fa-times-circle" style="color:red;"></i>';//exibe icone de erro, pois, o exito foi menor que 1
+
+                      
+                      if(isset($_GET['qt'])){//verifica se recebeu a quantidade de tentativas pelo get e se recebeu, armazena o valor em uma variavel.
+                        $qt = $_GET['qt'];
+
+                        
+                        if($qt >= 3){//se a quantidade de tentativas for maior ou igual a 3, exibe o botão de passo a passo
+                          echo "<a class='btn btn-primary' style='margin-left: 10px;'href='resolucao.php?ex=$ex&atv=$atv_reso&qt=$qt'>Ir para a resolução passo-a-passo</a>";
+                        }
+                      }
+                    }
+                    
+                    if($atv_reso == $id_a && $ex == 1){ //caso não satisfaça a verificação anterior, realiza essa próxima verificando se o exito é igual a 1 (verdadeiro)
+                      
+                      //echo "<script>alert('Você acertou')</script>";//mensagem de sucesso 
+                      echo '<i class="fas fa-check-circle" style="color:#00ba28;"></i>';//exibe icone de acerto
+                    }
                   }
                   ?>
                 </form>
