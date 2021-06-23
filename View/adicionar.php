@@ -91,8 +91,8 @@ if (!isset($_SESSION['id_user']) or ($_SESSION['grupo_usuario'] < $nivel_necessa
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label>Descrição</label>
-          <input type="text" class="form-control" name="descricao" placeholder="Descrição da atividade">
+          <label>Equação do problema</label>
+          <input type="text" class="form-control" name="descricao" placeholder="Equação do problema">
         </div>
       </div>
 

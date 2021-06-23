@@ -67,7 +67,7 @@ $rs = $conec->query($sql);
                 <thead class="thead-info">
                     <tr>
                         <th scope="col">Nome da atividade</th>
-                        <th scope="col">Descricao</th>
+                        <th scope="col">Equação do problema</th>
                         <th scope="col">Quantidade de tentativas</th>
                         <th scope="col">Resposta do aluno</th>
                         <th scope="col">Resposta da atividade</th>

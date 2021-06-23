@@ -74,7 +74,7 @@ $ret = $return->fetch_object();
 
   <!--CONTEÚDO DA PÁGINA-->
   <div class="container">
-    <h1>Olá, <?php echo $consulta->nome . "!" ?></h1>
+    <h1>Olá, estudante <?php echo $consulta->nome . "!" ?></h1>
     <div class="col d-flex flex-column pt-4 rounded">
       <?php while ($obj = $rs->fetch_object()) { ?>
         <button class="mb-4 rounded btn btn-info" onclick="conteudo(<?php echo $obj->id_atividades; ?>)"><?php echo $obj->nome . " " . "->" . " " . $obj->descricao ?></button>
@@ -85,7 +85,7 @@ $ret = $return->fetch_object();
             <h2>
               <div class="card card-signin my-5 colorido px-5 py-4">
                 <p class="d-block"><?php echo "Nome" . " " . " : " . $obj->nome ?></p>
-                <p class="d-block"><?php echo "Descrição" . " " . " : " . $obj->descricao ?></p>
+                <p class="d-block"><?php echo "Equação do problema" . " " . " : " . $obj->descricao ?></p>
                 <p class="d-block"><?php echo "Início da atividade" . " " . " : " . $obj->data_inicio ?></p>
                 <p class="d-block"><?php echo "Fim da atividade" . " " . " : " . $obj->data_fim ?></p>
                 <a href="../upload/<?php echo $obj->arquivo ?>" target="_blank"> <?php echo $obj->nome ?></a>
