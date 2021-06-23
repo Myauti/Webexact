@@ -1,7 +1,10 @@
 <?php 
     include "../../Controller/conexao.php";
     include "../../Controller/seguranca.php";
-    $sql = "select * from professor_disciplina";
+    $sql = "SELECT usuarios.nome, disciplinas.nome AS nome_disc,professor_disciplina.id_professor_disciplina, professores.usuario_professor, usuarios.id_usuario from professor_disciplina
+    INNER JOIN professores ON professor_disciplina.professor_vinculado = professores.id_professor
+    INNER JOIN usuarios ON professores.usuario_professor = usuarios.id_usuario
+    INNER JOIN disciplinas ON professor_disciplina.disciplina_vinculada = disciplinas.id_disciplinas";
     $rs = $conec->query($sql);
 ?>
 <!doctype html>
@@ -79,7 +82,7 @@
                     <a href="crudRes.php"><span class="fa fa-book mr-3"></span> Resoluções</a>
                 </li>
                 <li>
-                    <a href="crudDiscAlu.php"><span class="fa fa-book mr-3"></span> Disciplina aluno</a>
+                    <a href="crudDiscAlu.php"><span class="fa fa-book mr-3"></span> Vinculo aluno-disciplina</a>
                 </li>
 
             </ul>
@@ -89,7 +92,6 @@
             <table class="table">
                 <thead class = "thead-dark">
                     <tr>
-                        <th scope="col">id_professor_disciplina</th>
                         <th scope="col">professor_vinculado</th>
                         <th scope="col">disciplina_vinculada</th>
                         <th scope="col">Ações</th>
@@ -98,9 +100,8 @@
                 <tbody>
                     <?php while($obj = $rs->fetch_object()) { ?>
                         <tr>
-                        <th scope="row"><?php echo $obj->id_professor_disciplina; ?></th>
-                        <th scope="row"><?php echo $obj->professor_vinculado; ?></th>
-                        <th scope="row"><?php echo $obj->disciplina_vinculada; ?></th>
+                        <th scope="row"><?php echo $obj->nome; ?></th>
+                        <th scope="row"><?php echo $obj->nome_disc; ?></th>
                         <td>
                             <a href="./editCrud/editVinc.php?id_professor_disciplina=<?php echo $obj->id_professor_disciplina; ?>" class="btn btn-sm btn-warning" > Editar </a>
                             <a href="#" onclick="excluir(<?php echo $obj->id_professor_disciplina; ?>)" class="btn btn-sm btn-danger" > Excluir </a>
@@ -111,6 +112,7 @@
                     <?php } ?>
                 </tbody>
             </table>
+            <a href="../vincProfessor.php?=" class="btn btn-sm btn-primary" > Adicionar vínculo </a>
         </div>
 
     </div>

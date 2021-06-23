@@ -47,7 +47,7 @@
         </div>
 
         <button class="btn btn-success" type="submit">Gravar </button>
-        <a href="../crudRes.php" class="btn btn-primary">Voltar</a>
+        <a href="../crudDiscAlu.php" class="btn btn-primary">Voltar</a>
         
      </form>
 

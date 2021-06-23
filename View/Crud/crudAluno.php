@@ -116,8 +116,8 @@
                         <td>
 
                             <a href="./editCrud/editAluno.php?id_aluno=<?php echo $obj->id_aluno; ?>" class="btn btn-sm btn-warning" > Editar </a>
-                            <a href="#" onclick="excluir(<?php echo $obj->id_aluno; ?>)" class="btn btn-sm btn-danger" > Excluir </a>
-                       
+                            <!-- <a href="#" onclick="excluir(<?php echo $obj->id_aluno; ?>)" class="btn btn-sm btn-danger" > Excluir </a> -->
+                            
                         </td>
                     
                     </tr>
@@ -133,7 +133,7 @@
             if (confirm("Deseja excluir esse aluno?")) {
                 window.location.href = "../../Controller/CrudDelete/delAluno.php?id_aluno=" + id_aluno;
             }
-        }
+        } 
 
     </script>
     <script src="js/jquery.min.js"></script>

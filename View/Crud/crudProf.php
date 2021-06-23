@@ -79,7 +79,7 @@
                     <a href="crudRes.php"><span class="fa fa-book mr-3"></span> Resoluções</a>
                 </li>
                 <li>
-                    <a href="crudDiscAlu.php"><span class="fa fa-book mr-3"></span> Disciplina aluno</a>
+                    <a href="crudDiscAlu.php"><span class="fa fa-book mr-3"></span> Vinculo aluno-disciplina</a>
                 </li>
 
             </ul>
@@ -111,7 +111,7 @@
                         <th scope="row"><?php echo $obj->professor_escolaridade; ?></th>
                         <td>
                             <a href="./editCrud/editProf.php?id_professor=<?php echo $obj->id_professor; ?>" class="btn btn-sm btn-warning" > Editar </a>
-                            <a href="#" onclick="excluir(<?php echo $obj->id_professor; ?>)" class="btn btn-sm btn-danger" > Excluir </a>
+                            <!--<a href="#" onclick="excluir(<?php echo $obj->id_professor; ?>)" class="btn btn-sm btn-danger" > Excluir </a>-->
                        
                         </td>
                     

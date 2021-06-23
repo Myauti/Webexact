@@ -79,7 +79,7 @@
                     <a href="./Crud/crudRes.php"><span class="fa fa-book mr-3"></span> Resoluções</a>
                 </li>
                 <li>
-                    <a href="./Crud/crudDiscAlu.php"><span class="fa fa-book mr-3"></span> Disciplina aluno</a>
+                    <a href="./Crud/crudDiscAlu.php"><span class="fa fa-book mr-3"></span> Vinculo aluno-disciplina</a>
                 </li>
 
             </ul>

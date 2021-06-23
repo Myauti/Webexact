@@ -1,7 +1,8 @@
 <?php 
     include "../../Controller/conexao.php";
     include "../../Controller/seguranca.php";
-    $sql = "select * from aluno_disciplina";
+    $sql = 
+    "SELECT usuarios.nome, disciplinas.nome AS nome_disc, alunos.usuario_aluno, usuarios.id_usuario, aluno_disciplina.id_aluno_disciplina from aluno_disciplina INNER JOIN alunos ON aluno_disciplina.aluno_vinculado = alunos.id_aluno INNER JOIN usuarios ON alunos.usuario_aluno = usuarios.id_usuario INNER JOIN disciplinas ON aluno_disciplina.aluno_disciplina_vinculada = disciplinas.id_disciplinas";
     $rs = $conec->query($sql);
 ?>
 <!doctype html>
@@ -79,7 +80,7 @@
                     <a href="crudRes.php"><span class="fa fa-book mr-3"></span> Resoluções</a>
                 </li>
                 <li>
-                    <a href="crudDiscAlu.php"><span class="fa fa-book mr-3"></span> Disciplina aluno</a>
+                    <a href="crudDiscAlu.php"><span class="fa fa-book mr-3"></span> Vinculo aluno-disciplina</a>
                 </li>
 
             </ul>
@@ -89,7 +90,6 @@
             <table class="table">
                 <thead class = "thead-dark">
                     <tr>
-                        <th scope="col">id_aluno_disciplina</th>
                         <th scope="col">aluno_vinculado</th>
                         <th scope="col">aluno_disciplina_vinculada</th>
                         <th scope="col">Ações</th>
@@ -98,9 +98,8 @@
                 <tbody>
                     <?php while($obj = $rs->fetch_object()) { ?>
                         <tr>
-                        <th scope="row"><?php echo $obj->id_aluno_disciplina; ?></th>
-                        <th scope="row"><?php echo $obj->aluno_vinculado; ?></th>
-                        <th scope="row"><?php echo $obj->aluno_disciplina_vinculada; ?></th>
+                        <th scope="row"><?php echo $obj->nome; ?></th>
+                        <th scope="row"><?php echo $obj->nome_disc; ?></th>
                         <td>
 
                             <a href="./editCrud/editDiscAlu.php?id_aluno_disciplina=<?php echo $obj->id_aluno_disciplina; ?>" class="btn btn-sm btn-warning" > Editar </a>
@@ -112,6 +111,7 @@
                     <?php } ?>
                 </tbody>
             </table>
+            <a href="../vincAluno.php" class="btn btn-sm btn-primary" > Adicionar vínculo </a>
         </div>
 
     </div>

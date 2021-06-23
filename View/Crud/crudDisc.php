@@ -79,9 +79,8 @@
                     <a href="crudRes.php"><span class="fa fa-book mr-3"></span> Resoluções</a>
                 </li>
                 <li>
-                    <a href="crudDiscAlu.php"><span class="fa fa-book mr-3"></span> Disciplina aluno</a>
+                    <a href="crudDiscAlu.php"><span class="fa fa-book mr-3"></span> Vinculo aluno-disciplina</a>
                 </li>
-
             </ul>
 
         </nav>
@@ -105,7 +104,7 @@
                         <th scope="row"><?php echo $obj->periodos_disciplina; ?></th>
                         <td>
                             <a href="./editCrud/editDisc.php?id_disciplinas=<?php echo $obj->id_disciplinas; ?>" class="btn btn-sm btn-warning" > Editar </a>
-                            <a href="#" onclick="excluir(<?php echo $obj->id_disciplinas; ?>)" class="btn btn-sm btn-danger" > Excluir </a>
+                           <!-- <a href="#" onclick="excluir(<?php echo $obj->id_disciplinas; ?>)" class="btn btn-sm btn-danger" > Excluir </a>-->
                        
                         </td>
                     

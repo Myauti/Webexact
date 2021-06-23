@@ -116,7 +116,7 @@
                         <th scope="row"><?php echo $obj->grupo_usuario; ?></th>
                         <td>
                             <a href="./editCrud/editUsuario.php?id_usuario=<?php echo $obj->id_usuario; ?>" class="btn btn-sm btn-warning" > Editar </a>
-                            <a href="#" onclick="excluir(<?php echo $obj->id_usuario; ?>)" class="btn btn-sm btn-danger" > Excluir </a>
+                            <!--<a href="#" onclick="excluir(<?php echo $obj->id_usuario; ?>)" class="btn btn-sm btn-danger" > Excluir </a>-->
                        
                         </td>
                     
